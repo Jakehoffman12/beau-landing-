@@ -102,6 +102,7 @@
       z-index: 1;
       opacity: 0;
       pointer-events: none;
+      transition: transform 0.5s ease;
     }
   </style>
 </head>
@@ -123,35 +124,44 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script>
     const capSrc = "assets/cap.png";
-    const numCaps = 20; // number of caps per batch
-    let capsDropped = 0; // counter for batches
+    let capInterval;
 
-    function dropCaps() {
-      for (let i = 0; i < numCaps; i++) {
-        const cap = document.createElement("img");
-        cap.src = capSrc;
-        cap.className = "cap";
-        document.body.appendChild(cap);
-
-        const randomX = Math.random() * window.innerWidth;
-        cap.style.left = `${randomX}px`;
-        cap.style.top = `-80px`;
-
-        gsap.to(cap, {
-          y: window.innerHeight - 100,
-          opacity: 1,
-          delay: (Math.random() * 2) + (capsDropped * 2),
-          duration: 4 + Math.random() * 2,
-          ease: "power2.inOut"
-        });
-      }
-      capsDropped++;
-      if (capsDropped < 6) {
-        setTimeout(dropCaps, 10000); // Call again every 10 seconds for 6 batches
-      }
+    // Function to generate random sizes and rotation
+    function randomCapProperties() {
+      const size = 40 + Math.random() * 40; // random size between 40px and 80px
+      const rotation = Math.random() * 360; // random rotation
+      return { size, rotation };
     }
 
-    dropCaps(); // Initial batch of caps
+    // Continuous fall function
+    function dropCaps() {
+      const { size, rotation } = randomCapProperties();
+      const cap = document.createElement("img");
+      cap.src = capSrc;
+      cap.className = "cap";
+      document.body.appendChild(cap);
+
+      // Set random initial position
+      const randomX = Math.random() * window.innerWidth;
+      cap.style.left = `${randomX}px`;
+      cap.style.top = `-80px`;
+      cap.style.width = `${size}px`;
+
+      // Apply rotation and animate fall
+      gsap.to(cap, {
+        y: window.innerHeight - 100,
+        opacity: 1,
+        rotation: rotation,
+        duration: 4 + Math.random() * 2,
+        ease: "power2.inOut",
+        onComplete: () => {
+          cap.style.transform = 'none'; // Reset transform after landing
+        }
+      });
+    }
+
+    // Drop caps continuously
+    capInterval = setInterval(dropCaps, 500); // Generate a cap every 0.5 second
   </script>
 </body>
 </html>
