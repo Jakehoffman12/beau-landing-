@@ -126,56 +126,60 @@
 
   <!-- Bottle container with all 4 bottles side by side -->
   <div class="bottle-container">
-    <img class="bottle" src="assets/sand_bottle.png" alt="Sand Bottle" />
     <img class="bottle" src="assets/blush_bottle.png" alt="Blush Bottle" />
     <img class="bottle" src="assets/lavender_bottle.png" alt="Lavender Bottle" />
-    <img class="bottle" src="assets/misty_bottle.png" alt="Misty Sage Bottle" />
+    <img class="bottle" src="assets/misty_sage_bottle.png" alt="Misty Sage Bottle" />
+    <img class="bottle" src="assets/sand_bottle.png" alt="Sand Bottle" />
   </div>
 
- <script>
-  const capSrc = "assets/cap.png";  // Path to the cap image
-  const capContainer = document.querySelector('body');  // Append caps directly to the body for now
-  let lastCapY = window.innerHeight - 150; // Start position for the first cap
+  <!-- Cap animation script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    const capSrc = "assets/cap.png"; // Path to the cap image
+    const capContainer = document.querySelector('body');  // Append caps directly to the body for now
+    let lastCapY = window.innerHeight - 150; // Start position for the first cap
 
-  // Function to generate random sizes, rotation, and speed for each cap
-  function randomCapProperties() {
-    const size = 40 + Math.random() * 40; // Random size between 40px and 80px
-    const rotation = Math.random() * 360; // Random rotation
-    return { size, rotation };
-  }
+    // Function to generate random sizes, rotation, and speed for each cap
+    function randomCapProperties() {
+      const size = 40 + Math.random() * 40; // Random size between 40px and 80px
+      const rotation = Math.random() * 360; // Random rotation
+      return { size, rotation };
+    }
 
-  // Function to create and animate each cap
-  function dropCaps() {
-    const { size, rotation } = randomCapProperties();
-    const cap = document.createElement("img");
-    cap.src = capSrc;
-    cap.className = "cap";
-    cap.style.position = "absolute";
-    cap.style.left = `${Math.random() * window.innerWidth}px`; // Random X position for each cap
-    cap.style.top = `-80px`; // Start position from above the viewport
-    cap.style.width = `${size}px`; // Random size
-    cap.style.opacity = 0;
-    cap.style.transition = "opacity 1s";
-    cap.style.pointerEvents = "none"; // Disable click events for caps
+    // Function to create and animate each cap
+    function dropCaps() {
+      const { size, rotation } = randomCapProperties();
+      const cap = document.createElement("img");
+      cap.src = capSrc;
+      cap.className = "cap";
+      cap.style.position = "absolute";
+      cap.style.left = `${Math.random() * window.innerWidth}px`; // Random X position for each cap
+      cap.style.top = `-80px`; // Start position from above the viewport
+      cap.style.width = `${size}px`; // Random size
+      cap.style.opacity = 0;
+      cap.style.transition = "opacity 1s";
+      cap.style.pointerEvents = "none"; // Disable click events for caps
 
-    // Append cap to the body
-    capContainer.appendChild(cap);
+      // Append cap to the body
+      capContainer.appendChild(cap);
 
-    // Animate the cap falling to the stack position
-    gsap.to(cap, {
-      y: lastCapY, // Caps will fall and settle on the previous cap's position
-      opacity: 1,
-      rotation: rotation,
-      duration: 3 + Math.random() * 1.5, // Random duration
-      ease: "none",  // No easing, straight fall
-      onComplete: () => {
-        // Update the position for the next cap to fall just above
-        lastCapY = cap.offsetTop + cap.offsetHeight + 10; // Update Y position for stacking
-        cap.style.transform = 'none'; // Ensure it stays in place after landing
-      }
-    });
-  }
+      // Animate the cap falling to the stack position
+      gsap.to(cap, {
+        y: lastCapY, // Caps will fall and settle on the previous cap's position
+        opacity: 1,
+        rotation: rotation,
+        duration: 3 + Math.random() * 1.5, // Random duration
+        ease: "none",  // No easing, straight fall
+        onComplete: () => {
+          // Update the position for the next cap to fall just above
+          lastCapY = cap.offsetTop + cap.offsetHeight + 10; // Update Y position for stacking
+          cap.style.transform = 'none'; // Ensure it stays in place after landing
+        }
+      });
+    }
 
-  // Start continuous fall of caps
-  setInterval(dropCaps, 500); // Generate a new cap every 0.5 second
-</script>
+    // Start continuous fall of caps
+    setInterval(dropCaps, 500); // Generate a new cap every 0.5 second
+  </script>
+</body>
+</html>
