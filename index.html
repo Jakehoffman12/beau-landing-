@@ -15,31 +15,34 @@
       background-color: #f9f6f2;
       font-family: 'Manrope', sans-serif;
       color: #1a1a1a;
-      overflow-x: hidden;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
     }
     .hero {
       text-align: center;
-      padding: 5rem 2rem 2rem;
-      position: relative;
+      padding-top: 3rem;
       z-index: 2;
     }
     .headline {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 600;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
     .subtext {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 0 auto 3rem;
+      font-size: 1.1rem;
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
     }
     #container {
       position: relative;
       width: 100%;
-      max-width: 400px;
-      height: 700px;
-      margin: 0 auto;
+      max-width: 600px;
+      height: 400px;
       z-index: 1;
       pointer-events: none;
     }
@@ -60,12 +63,12 @@
       pointer-events: none;
     }
     .email-form {
-      margin-top: 2rem;
+      margin-bottom: 2rem;
       display: flex;
       justify-content: center;
       gap: 0.75rem;
       flex-wrap: wrap;
-      padding-bottom: 4rem;
+      z-index: 2;
     }
     .email-form input[type="email"] {
       padding: 0.75rem 1rem;
@@ -112,38 +115,24 @@
     const container = document.getElementById("container");
     const bottle = document.getElementById("bottle");
     const capSrc = "assets/cap.png";
-    const numCaps = 10;
-    const caps = [];
+    const numCaps = 20;
 
     for (let i = 0; i < numCaps; i++) {
       const cap = document.createElement("img");
       cap.src = capSrc;
       cap.className = "cap";
       container.appendChild(cap);
-      caps.push(cap);
 
-      const randomX = Math.random() * container.clientWidth;
-      const delay = Math.random() * 1.5;
-      const bounceY = 550 + Math.random() * 20;
-
+      const randomX = Math.random() * window.innerWidth;
       cap.style.left = `${randomX}px`;
+      cap.style.top = `-60px`;
 
       gsap.to(cap, {
-        y: bounceY,
+        y: 400,
         opacity: 1,
-        delay: delay,
-        duration: 1,
-        ease: "bounce.out",
-        onComplete: () => {
-          if (i === 0) {
-            gsap.to(cap, {
-              x: (container.clientWidth / 2) - randomX - 30,
-              y: 80,
-              duration: 1,
-              ease: "power2.out",
-            });
-          }
-        },
+        delay: Math.random() * 1.5,
+        duration: 3 + Math.random() * 2,
+        ease: "power1.inOut"
       });
     }
   </script>
