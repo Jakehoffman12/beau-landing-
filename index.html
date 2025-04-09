@@ -102,6 +102,7 @@
       z-index: 1;
       opacity: 0;
       pointer-events: none;
+      transition: transform 0.5s ease;
     }
   </style>
 </head>
@@ -123,6 +124,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script>
     const capSrc = "assets/cap.png";
+    let lastCapY = window.innerHeight - 150; // Starting Y position for caps
 
     // Function to generate random sizes and rotation
     function randomCapProperties() {
@@ -147,12 +149,13 @@
 
       // Apply rotation and animate fall
       gsap.to(cap, {
-        y: document.body.clientHeight - 100, // Landing position is just above the bottom
+        y: lastCapY, // Land at the previous cap's Y position plus height
         opacity: 1,
         rotation: rotation,
-        duration: 4 + Math.random() * 2,
+        duration: 3 + Math.random() * 1.5,
         ease: "none",  // No easing, just a straight fall and settle at the bottom
         onComplete: () => {
+          lastCapY = cap.offsetTop + cap.offsetHeight + 10; // Update the Y position for the next cap
           cap.style.transform = 'none'; // Reset transform after landing, no further movement
         }
       });
