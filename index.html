@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beau – The Art of Hydration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background-color: #f9f6f2;
+      font-family: 'Manrope', sans-serif;
+      color: #1a1a1a;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 10;
+      padding: 2rem;
+    }
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.75rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .subtext {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      max-width: 400px;
+    }
+    .email-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .email-form input[type="email"] {
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 9999px;
+      width: 260px;
+      font-size: 1rem;
+      outline: none;
+      font-family: 'Manrope', sans-serif;
+    }
+    .email-form button {
+      background-color: #1a1a1a;
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.75rem 2rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-family: 'Manrope', sans-serif;
+      transition: all 0.3s ease;
+    }
+    .email-form button:hover {
+      background-color: #333;
+    }
+    #container {
+      position: absolute;
+      bottom: 0;
+      width: 400px;
+      height: 700px;
+      z-index: 1;
+    }
+    #bottle {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      z-index: 1;
+    }
+    .cap {
+      position: absolute;
+      width: 60px;
+      height: auto;
+      z-index: 2;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1 class="headline">Create your ritual</h1>
+    <p class="subtext">Sign up for pre-orders and be the first to own the bottle reimagined.</p>
+    <form class="email-form">
+      <input type="email" placeholder="Enter your email" required />
+      <button type="submit">Join the Waitlist</button>
+    </form>
+    <div id="container">
+      <img id="bottle" src="YOUR_BOTTLE_IMAGE_PATH" alt="Beau Bottle" />
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    const container = document.getElementById("container");
+    const bottle = document.getElementById("bottle");
+    const capSrc = "YOUR_CAP_IMAGE_PATH"; // Replace with actual cap image path
+    const numCaps = 10;
+    const caps = [];
+
+    for (let i = 0; i < numCaps; i++) {
+      const cap = document.createElement("img");
+      cap.src = capSrc;
+      cap.className = "cap";
+      container.appendChild(cap);
+      caps.push(cap);
+
+      const randomX = Math.random() * container.clientWidth;
+      const delay = Math.random() * 1.5;
+      const bounceY = 550 + Math.random() * 20;
+
+      cap.style.left = `${randomX}px`;
+
+      gsap.to(cap, {
+        y: bounceY,
+        opacity: 1,
+        delay: delay,
+        duration: 1,
+        ease: "bounce.out",
+        onComplete: () => {
+          if (i === 0) {
+            gsap.to(cap, {
+              x: (container.clientWidth / 2) - randomX - 30,
+              y: 80,
+              duration: 1,
+              ease: "power2.out",
+            });
+          }
+        },
+      });
+    }
+  </script>
+</body>
+</html>
