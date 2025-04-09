@@ -87,14 +87,20 @@
     .email-form button:hover {
       background-color: #333;
     }
-    #bottle {
-      position: absolute;
-      top: 52%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 220px;
+
+    /* Bottles positioning */
+    .bottle-container {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: center;
       z-index: 2;
     }
+    .bottle {
+      position: relative;
+      width: 220px;
+    }
+
     .cap {
       position: absolute;
       width: 60px;
@@ -118,17 +124,23 @@
     <button type="submit">Notify Me</button>
   </form>
 
-  <img id="bottle" src="assets/bottle.png" alt="Beau Bottle" />
+  <!-- Bottle container with all 4 bottles side by side -->
+  <div class="bottle-container">
+    <img class="bottle" src="assets/blush_bottle.png" alt="Blush Bottle" />
+    <img class="bottle" src="assets/lavender_bottle.png" alt="Lavender Bottle" />
+    <img class="bottle" src="assets/misty_sage_bottle.png" alt="Misty Sage Bottle" />
+    <img class="bottle" src="assets/sand_bottle.png" alt="Sand Bottle" />
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script>
     const capSrc = "assets/cap.png";
-    let lastCapY = window.innerHeight - 150; // Starting Y position for the first cap
+    let lastCapY = window.innerHeight - 150; // Start position for the first cap
 
     // Function to generate random sizes and rotation for each cap
     function randomCapProperties() {
-      const size = 40 + Math.random() * 40; // random size between 40px and 80px
-      const rotation = Math.random() * 360; // random rotation
+      const size = 40 + Math.random() * 40; // Random size between 40px and 80px
+      const rotation = Math.random() * 360; // Random rotation
       return { size, rotation };
     }
 
