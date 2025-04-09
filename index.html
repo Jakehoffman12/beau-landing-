@@ -123,16 +123,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script>
     const capSrc = "assets/cap.png";
-    let lastCapY = window.innerHeight - 150; // Start position for the first cap (near the bottom)
+    let lastCapY = window.innerHeight - 150; // Position where caps will land
 
-    // Function to generate random sizes and rotation for each cap
+    // Function to generate random sizes and rotation for caps
     function randomCapProperties() {
-      const size = 40 + Math.random() * 40; // random size between 40px and 80px
-      const rotation = Math.random() * 360; // random rotation
+      const size = 40 + Math.random() * 40; // Random size between 40px and 80px
+      const rotation = Math.random() * 360; // Random rotation
       return { size, rotation };
     }
 
-    // Function to create and animate each cap
+    // Continuous fall function
     function dropCaps() {
       const { size, rotation } = randomCapProperties();
       const cap = document.createElement("img");
@@ -140,29 +140,29 @@
       cap.className = "cap";
       document.body.appendChild(cap);
 
-      // Set random X position
+      // Set initial random position for the cap
       const randomX = Math.random() * window.innerWidth;
       cap.style.left = `${randomX}px`;
       cap.style.top = `-80px`; // Start position from above the viewport
       cap.style.width = `${size}px`;
 
-      // Animate the cap falling to the stack position
+      // Apply rotation and animate the cap to fall and settle at the bottom
       gsap.to(cap, {
-        y: lastCapY, // Caps fall to the last position + height (stacked)
+        y: lastCapY, // Caps fall and settle on the previous cap's position
         opacity: 1,
         rotation: rotation,
         duration: 3 + Math.random() * 1.5,
-        ease: "none",  // No easing, straight fall to the landing position
+        ease: "none",  // No easing, straight fall
         onComplete: () => {
-          // Update the position for the next cap to land just above the previous one
-          lastCapY = cap.offsetTop + cap.offsetHeight + 10; // Update for stacking
-          cap.style.transform = 'none'; // Ensure it stays in place
+          // Update the position for the next cap to fall just above
+          lastCapY = cap.offsetTop + cap.offsetHeight + 10; // Update Y position for stacking
+          cap.style.transform = 'none'; // Ensure it stays in place after landing
         }
       });
     }
 
-    // Start dropping caps continuously
-    setInterval(dropCaps, 500); // Generate a new cap every 0.5 second
+    // Start continuous fall of caps
+    setInterval(dropCaps, 500); // Generate a cap every 0.5 second
   </script>
 </body>
 </html>
