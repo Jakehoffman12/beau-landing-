@@ -142,12 +142,12 @@
       // Set random initial position
       const randomX = Math.random() * window.innerWidth;
       cap.style.left = `${randomX}px`;
-      cap.style.top = `-80px`;
+      cap.style.top = `-80px`; // Start from above the viewport
       cap.style.width = `${size}px`;
 
       // Apply rotation and animate fall
       gsap.to(cap, {
-        y: window.innerHeight - 100, // Land at the bottom
+        y: document.body.clientHeight - 100, // Landing position is just above the bottom
         opacity: 1,
         rotation: rotation,
         duration: 4 + Math.random() * 2,
