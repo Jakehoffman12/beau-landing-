@@ -7,7 +7,7 @@
   <style>
     body {
       margin: 0;
-      background-color: #4b3621; /* rich brown */
+      background-color: #4b3621;
       color: white;
       font-family: 'Helvetica Neue', sans-serif;
       display: flex;
@@ -55,17 +55,26 @@
       outline: none;
       border-bottom: 1px solid #fff;
     }
-
-    button {
-      display: none; /* You could show this if you want a button instead of "enter to submit" UX */
-    }
   </style>
 </head>
 <body>
   <div class="logo">beau<span style="font-size: 2vw;">®</span></div>
   <div class="tagline">You’re early.</div>
-  <form class="signup">
-    <input type="email" placeholder="Join the ritual" required />
+  <form class="signup" id="signup-form">
+    <input type="email" id="email" placeholder="Join the ritual" required />
   </form>
+
+  <script>
+    document.getElementById('signup-form').addEventListener('submit', function (e) {
+      e.preventDefault(); // prevent page reload
+      const email = document.getElementById('email').value.trim();
+      if (email) {
+        console.log("Email submitted:", email);
+        // TODO: replace this with your API call to store the email
+        alert("Thank you for joining the ritual.");
+        document.getElementById('email').value = ''; // clear input
+      }
+    });
+  </script>
 </body>
 </html>
