@@ -7,49 +7,65 @@
   <style>
     body {
       margin: 0;
-      background-color: #4b3621; /* match brown */
+      background-color: #4b3621; /* rich brown */
       color: white;
-      font-family: 'Suisse', 'Helvetica Neue', sans-serif;
-    }
-
-    nav {
-      position: absolute;
-      top: 20px;
-      width: 100%;
+      font-family: 'Helvetica Neue', sans-serif;
       display: flex;
-      justify-content: space-between;
-      padding: 0 40px;
-      font-size: 14px;
-    }
-
-    .nav-left, .nav-right {
-      display: flex;
-      gap: 20px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
     }
 
     .logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       font-size: 20vw;
-      font-weight: 700;
+      font-weight: bold;
       letter-spacing: -0.05em;
       text-transform: lowercase;
+    }
+
+    .tagline {
+      margin-top: -20px;
+      font-size: 1.2rem;
+      opacity: 0.8;
+      font-style: italic;
+    }
+
+    .signup {
+      margin-top: 30px;
+    }
+
+    input[type="email"] {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid white;
+      color: white;
+      font-size: 1rem;
+      padding: 10px;
+      width: 250px;
+      text-align: center;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    input:focus {
+      outline: none;
+      border-bottom: 1px solid #fff;
+    }
+
+    button {
+      display: none; /* You could show this if you want a button instead of "enter to submit" UX */
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-left">
-      <div>home</div>
-      <div>women</div>
-      <div>men</div>
-    </div>
-    <div class="nav-right">
-      <div>about</div>
-    </div>
-  </nav>
   <div class="logo">beau<span style="font-size: 2vw;">®</span></div>
+  <div class="tagline">You’re early.</div>
+  <form class="signup">
+    <input type="email" placeholder="Join the ritual" required />
+  </form>
 </body>
 </html>
