@@ -21,26 +21,23 @@
       padding: 0;
       background-color: #f7eee2;
       font-family: 'Catalogue', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
       color: #3e2d25;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      object-fit: contain;
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
     }
 
     .logo {
       width: 600px;
       max-width: 80vw;
+      display: block;
     }
 
     .top-right {
@@ -48,11 +45,11 @@
       top: 30px;
       right: 40px;
       width: 50px;
+      cursor: pointer;
     }
 
     .tooltip {
       position: relative;
-      cursor: pointer;
     }
 
     .tooltip::after {
@@ -97,6 +94,42 @@
       color: #f7eee2;
     }
 
+    #email-form {
+      margin-top: 20px;
+      display: none;
+      flex-direction: row;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #email-form input[type="email"] {
+      padding: 12px 18px;
+      font-family: 'Catalogue', sans-serif;
+      font-size: 1rem;
+      border: 1.5px solid #3e2d25;
+      background-color: transparent;
+      color: #3e2d25;
+      border-radius: 999px;
+      width: 250px;
+    }
+
+    #email-form button {
+      padding: 12px 24px;
+      font-family: 'Catalogue', sans-serif;
+      font-size: 1rem;
+      background-color: #3e2d25;
+      color: #f7eee2;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #email-form button:hover {
+      background-color: #2e1f19;
+    }
+
     @media screen and (max-width: 600px) {
       .logo {
         width: 85%;
@@ -112,12 +145,41 @@
         padding: 12px 28px;
         font-size: 0.95rem;
       }
+
+      #email-form {
+        flex-direction: column;
+      }
+
+      #email-form input[type="email"] {
+        width: 100%;
+      }
+
+      #email-form button {
+        width: 100%;
+        margin-top: 10px;
+      }
     }
   </style>
 </head>
 <body>
-  <img src="logo-b-mark.png" alt="B° logo" class="top-right tooltip" />
-  <img src="logo-beau.png" alt="Beau logo" class="logo" />
-  <a href="https://yourformlink.com" target="_blank" class="cta-button">Join the wait list</a>
+  <div class="container">
+    <img src="logo-b-mark.png" alt="B° logo" class="top-right tooltip" />
+    <img src="logo-beau.png" alt="Beau logo" class="logo" />
+    
+    <button class="cta-button" id="reveal-form">Join the wait list</button>
+
+    <form id="email-form" action="https://formspree.io/f/mdkzwdrg" method="POST">
+      <input type="email" name="email" placeholder="Enter your email" required />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('reveal-form').addEventListener('click', function () {
+      const form = document.getElementById('email-form');
+      form.style.display = 'flex';
+      this.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
