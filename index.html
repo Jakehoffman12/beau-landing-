@@ -1,96 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beau® – The Art of Hydration</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beau</title>
   <style>
-    :root {
-      --color-primary: #3e2d25;
-      --color-secondary: #d4a485;
-      --color-bg: #f7eee2;
-      --color-accent1: #acc0b5;
-      --spacing: 1rem;
-      --radius: 8px;
-      --logo-size: 220px;
-      --max-width: 400px;
-    }
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      height: 100%;
-      background: var(--color-bg);
-      font-family: 'Catalogue', sans-serif;
-      color: var(--color-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    .container {
-      width: 100%;
-      max-width: var(--max-width);
-      padding: var(--spacing);
-    }
-    .logo img {
-      width: var(--logo-size);
-      height: auto;
-      margin-bottom: var(--spacing);
-    }
-    h1 {
-      font-size: 1.25rem;
+    @font-face {
+      font-family: 'Catalogue';
+      src: url('Catalogue-Book.otf') format('opentype');
       font-weight: normal;
-      text-transform: lowercase;
-      margin-bottom: var(--spacing);
-      color: var(--color-primary);
+      font-style: normal;
     }
-    form {
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f7eee2;
+      font-family: 'Catalogue', sans-serif;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-      margin-bottom: var(--spacing);
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      color: #3e2d25;
     }
-    input[type="email"] {
-      padding: 0.75rem;
-      font-size: 1rem;
-      border: 2px solid var(--color-primary);
-      border-radius: var(--radius);
-      width: 100%;
-      outline: none;
-      transition: border-color 0.2s;
+
+    .logo {
+      max-width: 80%;
+      width: 600px;
     }
-    input[type="email"]:focus { border-color: var(--color-secondary); }
-    button {
-      padding: 0.75rem;
+
+    .top-right {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      width: 50px;
+      height: auto;
+    }
+
+    .cta-button {
+      margin-top: 40px;
+      padding: 14px 36px;
       font-size: 1rem;
-      font-weight: bold;
-      color: #fff;
-      background: var(--color-primary);
-      border: none;
-      border-radius: var(--radius);
+      font-family: 'Catalogue', sans-serif;
+      border: 2px solid #3e2d25;
+      border-radius: 999px;
+      background-color: transparent;
+      color: #3e2d25;
       cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+      transition: all 0.3s ease;
     }
-    button:hover, button:focus {
-      background: var(--color-secondary);
-      transform: translateY(-1px);
+
+    .cta-button:hover {
+      background-color: #3e2d25;
+      color: #f7eee2;
     }
-    footer {
-      font-size: 0.75rem;
-      color: var(--color-accent1);
+
+    @media screen and (max-width: 600px) {
+      .logo {
+        width: 85%;
+      }
+
+      .top-right {
+        width: 40px;
+        top: 20px;
+        right: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header class="logo">
-      <img src="assets/beau-logo.png" alt="Beau® logo" />
-    </header>
-    <h1>the art of hydration</h1>
-    <form action="#" method="POST">
-      <input type="email" name="email" placeholder="Enter your email" required />
-      <button type="submit">Join the Waitlist</button>
-    </form>
-    <footer>© 2025 Beau®. All rights reserved.</footer>
-  </div>
+  <img src="logo-b-mark.jpeg" alt="B logo" class="top-right" />
+  <img src="logo-beau.jpeg" alt="Beau logo" class="logo" />
+  <a href="https://yourtypeformorlink.com" target="_blank" class="cta-button">Join the wait list</a>
 </body>
 </html>
