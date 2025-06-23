@@ -50,6 +50,34 @@
       width: 50px;
     }
 
+    .tooltip {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .tooltip::after {
+      content: "it’s just an image";
+      position: absolute;
+      top: 110%;
+      right: 0;
+      background-color: #3e2d25;
+      color: #f7eee2;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(5px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      transition-delay: 1s;
+    }
+
+    .tooltip:hover::after {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+
     .cta-button {
       margin-top: 40px;
       padding: 14px 36px;
@@ -88,7 +116,7 @@
   </style>
 </head>
 <body>
-  <img src="logo-b-mark.png" alt="B° logo" class="top-right" />
+  <img src="logo-b-mark.png" alt="B° logo" class="top-right tooltip" />
   <img src="logo-beau.png" alt="Beau logo" class="logo" />
   <a href="https://yourformlink.com" target="_blank" class="cta-button">Join the wait list</a>
 </body>
