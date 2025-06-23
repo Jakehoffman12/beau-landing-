@@ -22,6 +22,7 @@
       background-color: #f7eee2;
       font-family: 'Catalogue', sans-serif;
       color: #3e2d25;
+      position: relative;
     }
 
     .container {
@@ -31,7 +32,6 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      position: relative;
     }
 
     .logo {
@@ -40,16 +40,12 @@
       display: block;
     }
 
-    .top-right {
+    .tooltip {
       position: absolute;
       top: 30px;
       right: 40px;
       width: 50px;
       cursor: pointer;
-    }
-
-    .tooltip {
-      position: relative;
     }
 
     .tooltip::after {
@@ -73,6 +69,11 @@
     .tooltip:hover::after {
       opacity: 1;
       transform: translateY(0px);
+    }
+
+    .tooltip img {
+      width: 100%;
+      display: block;
     }
 
     .cta-button {
@@ -135,7 +136,7 @@
         width: 85%;
       }
 
-      .top-right {
+      .tooltip {
         width: 40px;
         top: 20px;
         right: 20px;
@@ -162,8 +163,13 @@
   </style>
 </head>
 <body>
+  <!-- Top-right B° Tooltip -->
+  <div class="tooltip">
+    <img src="logo-b-mark.png" alt="B° logo" />
+  </div>
+
+  <!-- Centered Content -->
   <div class="container">
-    <img src="logo-b-mark.png" alt="B° logo" class="top-right tooltip" />
     <img src="logo-beau.png" alt="Beau logo" class="logo" />
     
     <button class="cta-button" id="reveal-form">Join the wait list</button>
