@@ -12,9 +12,7 @@
       font-style: normal;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -41,14 +39,13 @@
       justify-content: center;
       align-items: center;
       padding: var(--space-lg);
-      gap: var(--space-md);
+      gap: var(--space-sm);
     }
 
     .logo {
       width: 600px;
       max-width: 80vw;
       display: block;
-      margin-bottom: var(--space-sm);
     }
 
     .tooltip {
@@ -81,20 +78,17 @@
     }
     .tooltip:hover::after {
       opacity: 1;
-      transform: translateY(0px);
+      transform: translateY(0);
     }
 
     .cta-button {
-      margin-top: var(--space-md);
       padding: var(--space-sm) var(--space-lg);
       font-size: 1rem;
-      font-family: 'Catalogue', sans-serif;
       border: 2px solid #3e2d25;
       border-radius: var(--radius);
       background-color: transparent;
       color: #3e2d25;
       cursor: pointer;
-      text-decoration: none;
       transition: all 0.3s ease;
     }
     .cta-button:hover {
@@ -103,7 +97,6 @@
     }
 
     #email-form {
-      margin-top: var(--space-md);
       display: none;
       flex-direction: row;
       gap: var(--space-sm);
@@ -111,18 +104,16 @@
       justify-content: center;
     }
     #email-form input[type="email"] {
-      padding: var(--space-sm) var(--space-lg);
-      font-family: 'Catalogue', sans-serif;
+      padding: var(--space-sm) var(--space-md);
       font-size: 1rem;
       border: 1.5px solid #3e2d25;
-      background-color: transparent;
+      background: transparent;
       color: #3e2d25;
       border-radius: var(--radius);
       width: 280px;
     }
     #email-form button {
       padding: var(--space-sm) var(--space-md);
-      font-family: 'Catalogue', sans-serif;
       font-size: 1rem;
       background-color: #3e2d25;
       color: #f7eee2;
@@ -169,8 +160,10 @@
   <!-- Centered Content -->
   <div class="container">
     <img src="logo-beau.png" alt="Beau logo" class="logo" />
-    
-    <button class="cta-button" id="reveal-form">Join the wait list</button>
+
+    <button class="cta-button" id="reveal-form">
+      Join the wait list
+    </button>
 
     <form id="email-form" action="https://formspree.io/f/mdkzwdrg" method="POST">
       <input type="email" name="email" placeholder="Enter your email" required />
